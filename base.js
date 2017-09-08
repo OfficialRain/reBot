@@ -69,17 +69,14 @@ let modRole = message.guild.roles.find('name', 'moddi');
 //Kick members.
     if (command === 'kick') {
       let modRole = message.guild.roles.find("name", "moddi", "Mod");
+      let kickMember = message.guild.member(message.mentions.users.first());
       if (!message.member.roles.has(modRole.id)) {
         message.channel.send(`sorry, you don't have permission to do that.`);
-      }
-      if (message.mentions.users.size === 0) {
+      } else if (message.mentions.users.size === 0) {
         return message.channel.send(`don't forget to mention the user you want to kick!`);
-      }
-      let kickMember = message.guild.member(message.mentions.users.first());
-      if(!kickMember) {
+      } else if(!kickMember) {
         return message.channel.send('wait, who? try retyping the username.');
-      }
-      if(!message.guild.member(client.user).hasPermission('KICK_MEMBERS')) {
+      } else if(!message.guild.member(client.user).hasPermission('KICK_MEMBERS')) {
         return message.channel.send(`i don't have the permission to do that. go into server settings > roles > reBot and give me the "Kick Members" permission. then, drag me over the user you'd like to kick. c:`)
       }
       kickMember.kick();
@@ -88,17 +85,14 @@ let modRole = message.guild.roles.find('name', 'moddi');
   //Ban members.
     if (command === `ban`) {
       let modRole = message.guild.roles.find("name", "moddi", "Mod");
+      let banMember = message.guild.member(message.mentions.users.first());
       if (!message.member.roles.has(modRole.id)) {
         message.channel.send(`sorry, you don't have permission to do that.`);
-      }
-      if (message.mentions.users.size === 0) {
+      } else if (message.mentions.users.size === 0) {
         return message.channel.send(`don't forget to mention the user you want to ban!`);
-      }
-      let banMember = message.guild.member(message.mentions.users.first());
-      if(!banMember) {
+      } else if(!banMember) {
         return message.channel.send('wait, who? try retyping the username.');
-      }
-      if(!message.guild.member(client.user).hasPermission('BAN_MEMBERS')) {
+      } else if(!message.guild.member(client.user).hasPermission('BAN_MEMBERS')) {
         return message.channel.send(`i don't have the permission to do that. go into server settings > roles > reBot and give me the "Ban Members" permission. then, drag me over the user you'd like to ban. c:`)
       }
       banMember.ban();
